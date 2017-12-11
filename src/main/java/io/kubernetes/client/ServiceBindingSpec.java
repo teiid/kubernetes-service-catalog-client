@@ -19,6 +19,7 @@ package io.kubernetes.client;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -28,6 +29,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Changes submitted to the spec field will be ignored.
  *
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ServiceBindingSpec {
     private LocalObjectReference serviceInstanceRef;
     @JsonDeserialize(using = RawJsonDeserializer.class)

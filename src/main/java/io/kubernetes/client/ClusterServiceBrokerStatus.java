@@ -20,11 +20,13 @@ package io.kubernetes.client;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * ClusterServiceBrokerStatus represents the current status of a Broker.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ClusterServiceBrokerStatus {
     private ArrayList<ServiceBrokerCondition> conditions = new ArrayList<>();
     private long reconciledGeneration;

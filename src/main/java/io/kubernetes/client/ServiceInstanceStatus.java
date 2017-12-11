@@ -20,11 +20,13 @@ package io.kubernetes.client;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * ServiceInstanceStatus represents the current status of an Instance.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ServiceInstanceStatus {
     public static enum ServiceInstanceOperation {
         Provision, Update, Deprovision;
@@ -46,9 +48,19 @@ public class ServiceInstanceStatus {
     private ServiceInstancePropertiesState externalProperties;
     private ServiceInstanceDeprovisionStatus deprovisionStatus;
 
+    
+    public boolean isReady() {
+    	List<ServiceInstanceCondition> conditions = getConditions();
+    	for (ServiceInstanceCondition condition : conditions) {
+    		if (condition.getType() == ServiceInstanceCondition.ServiceInstanceConditionType.Ready) {
+    			return condition.getStatus() == ConditionStatus.True;
+    		}
+    	}
+    	return false;
+    }
     /**
-     * // Conditions is an array of ServiceInstanceConditions capturing aspects of
-     * an // ServiceInstance's status.
+     * Conditions is an array of ServiceInstanceConditions capturing aspects of
+     * an ServiceInstance's status.
      *
      * @return
      */

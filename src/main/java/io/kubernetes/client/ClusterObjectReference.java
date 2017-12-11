@@ -17,12 +17,14 @@
  */
 package io.kubernetes.client;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * ClusterObjectReference contains enough information to let you locate the
  * cluster-scoped referenced object.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ClusterObjectReference {
     private String name;
 

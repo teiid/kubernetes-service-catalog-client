@@ -17,29 +17,29 @@
  */
 package io.kubernetes.client;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * // ParametersFromSource represents the source of a set of Parameters
- */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class ParametersFromSource {
-    private SecretKeyReference secretKeyRef;
+public class SecretMetadata extends Metadata {
+    private List<OwnerReferences> ownerReferences;
 
-    /**
-     *  The Secret key to select from.  The value must be a JSON object.
-     * +optional
-     *
-     * @return
-     */
-    @JsonProperty("secretKeyRef")
-    public SecretKeyReference getSecretKeyRef() {
-        return secretKeyRef;
-    }
+    @JsonProperty("ownerReferences")
+	public List<OwnerReferences> getOwnerReferences() {
+		return ownerReferences;
+	}
 
-    @JsonProperty("secretKeyRef")
-    public void setSecretKeyRef(SecretKeyReference secretKeyRef) {
-        this.secretKeyRef = secretKeyRef;
-    }
+    @JsonProperty("ownerReferences")
+	public void setOwnerReferences(List<OwnerReferences> ownerReferences) {
+		this.ownerReferences = ownerReferences;
+	}
+
+	@Override
+	public String toString() {
+		return "SecretMetadata [ownerReferences=" + ownerReferences + ", toString()=" + super.toString() + "]";
+	}
+
+
 }

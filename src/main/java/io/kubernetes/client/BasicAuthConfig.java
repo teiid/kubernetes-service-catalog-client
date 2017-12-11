@@ -17,11 +17,13 @@
  */
 package io.kubernetes.client;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * BasicAuthConfig provides config for the basic authentication.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class BasicAuthConfig {
     private ObjectReference secretRef;
 

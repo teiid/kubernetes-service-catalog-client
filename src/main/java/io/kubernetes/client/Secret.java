@@ -17,29 +17,52 @@
  */
 package io.kubernetes.client;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * // ParametersFromSource represents the source of a set of Parameters
+ * Secret that represents some credentials
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class ParametersFromSource {
-    private SecretKeyReference secretKeyRef;
+public class Secret {
+    private SecretMetadata metadata;
+    private Map<String, String> data;
+    private String type;
 
-    /**
-     *  The Secret key to select from.  The value must be a JSON object.
-     * +optional
-     *
-     * @return
-     */
-    @JsonProperty("secretKeyRef")
-    public SecretKeyReference getSecretKeyRef() {
-        return secretKeyRef;
+    @JsonProperty("metadata")
+    public SecretMetadata getMetadata() {
+        return metadata;
     }
 
-    @JsonProperty("secretKeyRef")
-    public void setSecretKeyRef(SecretKeyReference secretKeyRef) {
-        this.secretKeyRef = secretKeyRef;
+    @JsonProperty("metadata")
+    public void setMetadata(SecretMetadata metadata) {
+        this.metadata = metadata;
     }
+
+    @JsonProperty("data")
+    public Map<String, String> getData() {
+        return data;
+    }
+
+    @JsonProperty("data")
+    public void setSpec(Map<String, String> data) {
+        this.data = data;
+    }
+
+    @JsonProperty("type")
+    public String getType() {
+        return type;
+    }
+
+    @JsonProperty("type")
+    public void setStatus(String type) {
+        this.type = type;
+    }
+
+	@Override
+	public String toString() {
+		return "Secret [metadata=" + metadata + ", data=" + data + ", type=" + type + "]";
+	}
 }

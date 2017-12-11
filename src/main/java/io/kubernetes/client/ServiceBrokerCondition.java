@@ -2,11 +2,13 @@ package io.kubernetes.client;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * ServiceBrokerCondition contains condition information for a Broker.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ServiceBrokerCondition {
     public enum ServiceBrokerConditionType {
         Ready, Failed

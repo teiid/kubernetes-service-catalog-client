@@ -20,17 +20,19 @@ package io.kubernetes.client;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * UserInfo holds information about the user that last changed a resource's
  * spec.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class UserInfo {
     private String username;
     private String UID;
     private String[] groups;
-    private Map<String, String> extra;
+    private Map<String, Object> extra;
 
     @JsonProperty("username")
     public String getUsername() {
@@ -63,12 +65,12 @@ public class UserInfo {
     }
 
     @JsonProperty("extra")
-    public Map<String, String> getExtra() {
+    public Map<String, Object> getExtra() {
         return extra;
     }
 
     @JsonProperty("extra")
-    public void setExtra(Map<String, String> extra) {
+    public void setExtra(Map<String, Object> extra) {
         this.extra = extra;
     }
 

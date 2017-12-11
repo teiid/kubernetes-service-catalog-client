@@ -19,11 +19,13 @@ package io.kubernetes.client;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * ServiceInstanceCondition contains condition information about an Instance.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ServiceInstanceCondition {
     public enum ServiceInstanceConditionType {
         Ready, Failed;

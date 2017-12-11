@@ -3,28 +3,18 @@ package io.kubernetes.client;
 import java.io.IOException;
 import java.util.Properties;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-
 import org.junit.Test;
 
 
 public class ResponseTests {
-    String baseUrl = "https://172.17.0.1:8443";
+    String baseUrl = "https://192.168.42.29:8443";
     String apiVersion = "v1beta1";
-    String authHeader = "bRhtEDj3WgUmAFJPfgLWdEud4PUiYp3qwe8rP9LrVdk";
+    String authHeader = "YuwfKfQkEN8uTeeBoK6yEGq0oDboNvzxAndmq_jDD8Y";
 
     @Test
     public void createBinding() throws IOException {
-        JsonObjectBuilder payload = Json.createObjectBuilder()
-                .add("apiVersion", "v1")
-                .add("kind", "ServiceInstance")
-                .add("metadata", Json.createObjectBuilder()
-                        .add("name", "postgresql-persistent-tgzln")
-                        .add("namespace", "myproject")
-                        .add("uid", "c8d5a232-b4d2-11e7-bd47-0242ac110005"));
-        JsonObject obj = ServiceCatalogClient.createBinding(baseUrl, apiVersion, authHeader, payload.build());
+		String obj = ServiceCatalogClient.createBinding(baseUrl, apiVersion, authHeader, "postgresql-persistent-n7jm8",
+				"test");
         System.out.println(obj);
     }
 
@@ -43,7 +33,7 @@ public class ResponseTests {
         String serviceClass = "postgresql-persistent";
         String servicePlan = "default";
 
-        JsonObject obj = ServiceCatalogClient.createServiceInstance(baseUrl, apiVersion, authHeader,
+        String obj = ServiceCatalogClient.createServiceInstance(baseUrl, apiVersion, authHeader,
                 "Ramesh-postgresql", "myproject", serviceClass, servicePlan, p);
         System.out.println(obj);
 
@@ -57,7 +47,7 @@ public class ResponseTests {
 
     @Test
     public void getServicePlans() throws IOException {
-        String obj = ServiceCatalogClient.getClusterServicePlans(baseUrl, apiVersion, authHeader,
+        String obj = ServiceCatalogClient.getClusterServicePlan(baseUrl, apiVersion, authHeader,
                 "80028d15-b4d1-11e7-a18b-c85b76df3a86");
         System.out.println(obj);
     }
@@ -76,14 +66,14 @@ public class ResponseTests {
 
     @Test
     public void deleteServiceBinding() throws IOException {
-        JsonObject obj = ServiceCatalogClient.deleteServiceBinding(baseUrl, apiVersion, authHeader, "myproject",
+        String obj = ServiceCatalogClient.deleteServiceBinding(baseUrl, apiVersion, authHeader, "myproject",
                 "postgresql-persistent-8m6gx-75cgx");
         System.out.println(obj);
     }
 
     @Test
     public void deleteServiceInstance() throws IOException {
-        JsonObject obj = ServiceCatalogClient.deleteServiceInstance(baseUrl, apiVersion, authHeader, "myproject",
+        String obj = ServiceCatalogClient.deleteServiceInstance(baseUrl, apiVersion, authHeader, "myproject",
                 "postgresql-persistent-8m6gx");
         System.out.println(obj);
     }
@@ -95,4 +85,11 @@ public class ResponseTests {
         ServiceBindingList plans = client.getServiceBindings("myproject");
         System.out.println(plans);
     }
+    
+    @Test
+    public void testSecret() throws IOException {
+        ModelServiceCatalogClient client = new ModelServiceCatalogClient(baseUrl, apiVersion, authHeader);
+        Secret s = client.getSecret("myproject", "postgresql-persistent-parametersf73b4");
+        System.out.println(s);
+    }    
 }

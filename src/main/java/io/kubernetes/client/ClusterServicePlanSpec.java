@@ -17,12 +17,14 @@
  */
 package io.kubernetes.client;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * ClusterServicePlanSpec represents details about a ClusterServicePlan.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ClusterServicePlanSpec {
     private String clusterServiceBrokerName;
     private String externalName;

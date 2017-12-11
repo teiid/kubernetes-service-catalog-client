@@ -19,14 +19,16 @@ package io.kubernetes.client;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * ServiceBindingCondition condition information for a ServiceBinding.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ServiceBindingCondition {
     public enum ServiceBindingConditionType {
-        ready, Failed
+        Ready, Failed
     }
 
     private ServiceBindingConditionType type;

@@ -17,11 +17,13 @@
  */
 package io.kubernetes.client;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * // SecretKeyReference references a key of a Secret.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class SecretKeyReference {
     private String name;
     private String key;

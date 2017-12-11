@@ -17,12 +17,14 @@
  */
 package io.kubernetes.client;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * ClusterServiceClassStatus represents status information about a
  * ClusterServiceClass.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ClusterServiceClassStatus {
     private boolean removedFromBrokerCatalog;
 

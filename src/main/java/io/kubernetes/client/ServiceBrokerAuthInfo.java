@@ -17,6 +17,7 @@
  */
 package io.kubernetes.client;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * support, according to the OpenServiceBroker API specification
  * (https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md).
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ServiceBrokerAuthInfo {
     private BasicAuthConfig basic;
     private BearerTokenAuthConfig bearer;

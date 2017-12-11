@@ -17,11 +17,13 @@
  */
 package io.kubernetes.client;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * BearerTokenAuthConfig provides config for the bearer token authentication.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class BearerTokenAuthConfig {
     private ObjectReference secretRef;
 

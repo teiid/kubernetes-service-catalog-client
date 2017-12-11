@@ -17,6 +17,7 @@
  */
 package io.kubernetes.client;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -24,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * ClusterServicePlan.
  *
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ClusterServicePlanStatus {
     private boolean removedFromBrokerCatalog;
 

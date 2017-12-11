@@ -18,6 +18,7 @@
 package io.kubernetes.client;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -67,7 +68,7 @@ public class ServiceCatalogClient {
         return executeGET(url, authHeader);
     }
 
-    public static String getClusterServicePlans(String baseUrl, String apiVersion, String authHeader,
+    public static String getClusterServicePlan(String baseUrl, String apiVersion, String authHeader,
             String serviceClass) {
         String url = baseUrl + "/apis/servicecatalog.k8s.io/"+apiVersion+"/clusterserviceplans/"+serviceClass;
         return executeGET(url, authHeader);
@@ -101,24 +102,11 @@ public class ServiceCatalogClient {
         return executeGET(url, authHeader);
     }
 
-    //    private static JsonObject readExecute(String url, String authHeader) {
-    //        try {
-    //            CloseableHttpClient client = buildHttpClient();
-    //            HttpGet request = new HttpGet(url);
-    //            request.addHeader("Authorization", bearer(authHeader));
-    //            HttpResponse response = client.execute(request);
-    //            if (response.getStatusLine().getStatusCode() != 200) {
-    //                throw new RuntimeException(response.getStatusLine().getReasonPhrase());
-    //            }
-    //            JsonReader jsonReader = Json.createReader(response.getEntity().getContent());
-    //            JsonObject result = jsonReader.readObject();
-    //            jsonReader.close();
-    //            return result;
-    //        } catch (UnsupportedOperationException | IOException | KeyManagementException | NoSuchAlgorithmException
-    //                | KeyStoreException e) {
-    //            throw new RuntimeException(e);
-    //        }
-    //    }
+	public static String getSecret(String baseUrl, String apiVersion, String authHeader, String namespace,
+			String secretName) {
+		String url = baseUrl + "/api/"+ apiVersion + "/namespaces/" + namespace + "/secrets/" + secretName;
+		return executeGET(url, authHeader);
+	}
 
     private static String executeGET(String url, String authHeader) {
         try {
@@ -130,14 +118,17 @@ public class ServiceCatalogClient {
                 throw new RuntimeException(response.getStatusLine().getReasonPhrase());
             }
             BasicResponseHandler handler = new BasicResponseHandler();
-            return handler.handleResponse(response);
+            String result = handler.handleResponse(response);
+            System.out.println(url);
+            System.out.println(result);
+            return result;
         } catch (UnsupportedOperationException | IOException | KeyManagementException | NoSuchAlgorithmException
                 | KeyStoreException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static JsonObject deleteExecute(String url, String authHeader) {
+    private static String executeDELETE(String url, String authHeader) {
         try {
             CloseableHttpClient client = buildHttpClient();
             HttpDelete request = new HttpDelete(url);
@@ -146,9 +137,8 @@ public class ServiceCatalogClient {
             if (response.getStatusLine().getStatusCode() != 200) {
                 throw new RuntimeException(response.getStatusLine().getReasonPhrase());
             }
-            JsonReader jsonReader = Json.createReader(response.getEntity().getContent());
-            JsonObject result = jsonReader.readObject();
-            jsonReader.close();
+            BasicResponseHandler handler = new BasicResponseHandler();
+            String result = handler.handleResponse(response);
             return result;
         } catch (UnsupportedOperationException | IOException | KeyManagementException | NoSuchAlgorithmException
                 | KeyStoreException e) {
@@ -157,10 +147,10 @@ public class ServiceCatalogClient {
     }
 
     private static String bearer(String auth) {
-        return "bearer " + auth;
+        return "Bearer " + auth;
     }
 
-    public static JsonObject createServiceInstance(String baseUrl, String apiVersion, String authHeader, String name,
+    public static String createServiceInstance(String baseUrl, String apiVersion, String authHeader, String name,
             String namespace, String serviceClassName, String planName, Properties properties) {
 
         String version = "servicecatalog.k8s.io/"+apiVersion;
@@ -187,26 +177,29 @@ public class ServiceCatalogClient {
         payload.add("spec", spec);
         String url = baseUrl + "/apis/servicecatalog.k8s.io/" + apiVersion + "/namespaces/" + namespace
                 + "/serviceinstances";
-        JsonObject serviceInstance = executeCreate(authHeader, payload.build(), url);
+        String serviceInstanceStr = executePOST(authHeader, payload.build().toString(), url);
+        JsonReader jsonReader = Json.createReader(new StringReader(serviceInstanceStr));
+        JsonObject serviceInstance = jsonReader.readObject();
+        jsonReader.close();
         createServiceInstanceSecret(baseUrl, authHeader, secretName, version, serviceInstance, properties);
-        return serviceInstance;
+        return serviceInstanceStr;
     }
 
-    public static JsonObject deleteServiceInstance(String baseUrl, String apiVersion, String authHeader,
+    public static String deleteServiceInstance(String baseUrl, String apiVersion, String authHeader,
             String namespace, String serviceInstanceName) {
         String url = baseUrl + "/apis/servicecatalog.k8s.io/" + apiVersion + "/namespaces/" + namespace
                 + "/serviceinstances/"+serviceInstanceName;
-        return deleteExecute(url, authHeader);
+        return executeDELETE(url, authHeader);
     }
 
-    private static JsonObject executeCreate(String authHeader, JsonObject payload, String url) {
+    private static String executePOST(String authHeader, String payload, String url) {
         try {
             System.out.println("URL = " + url);
             System.out.println("PAYLOAD = " + payload);
 
             CloseableHttpClient client = buildHttpClient();
             HttpPost request = new HttpPost(url);
-            HttpEntity payloadEntity = new StringEntity(payload.toString(), "UTF-8");
+            HttpEntity payloadEntity = new StringEntity(payload, "UTF-8");
             request.setEntity(payloadEntity);
             request.addHeader("Authorization", bearer(authHeader));
             request.addHeader("Content-Type", "application/json");
@@ -215,9 +208,8 @@ public class ServiceCatalogClient {
             if (response.getStatusLine().getStatusCode() != 201) {
                 throw new RuntimeException(response.getStatusLine().getReasonPhrase());
             }
-            JsonReader jsonReader = Json.createReader(response.getEntity().getContent());
-            JsonObject result = jsonReader.readObject();
-            jsonReader.close();
+            BasicResponseHandler handler = new BasicResponseHandler();
+            String result = handler.handleResponse(response);            
             System.out.println("RESPONSE = "+result);
             return result;
         } catch (KeyManagementException | NoSuchAlgorithmException | KeyStoreException | UnsupportedOperationException
@@ -226,7 +218,7 @@ public class ServiceCatalogClient {
         }
     }
 
-    private static JsonObject createServiceInstanceSecret(String baseUrl, String authHeader, String secretName, String version,
+    private static String createServiceInstanceSecret(String baseUrl, String authHeader, String secretName, String version,
             JsonObject serviceInstance, Properties properties) {
         JsonObjectBuilder parametersJson = Json.createObjectBuilder();
         for (String key:properties.stringPropertyNames()) {
@@ -255,15 +247,12 @@ public class ServiceCatalogClient {
                         .add("parameters", parametersJson.build().toString()));
 
         String url = baseUrl + "/api/v1/namespaces/"+namespace+"/secrets";
-        return executeCreate(authHeader, payload.build(), url);
+        return executePOST(authHeader, payload.build().toString(), url);
     }
 
-    public static JsonObject createBinding(String baseUrl, String apiVersion, String authHeader,
-            JsonObject serviceInstance) {
-
+    public static String createBinding(String baseUrl, String apiVersion, String authHeader,
+            String serviceInstanceName, String namespace) {
         String version = "servicecatalog.k8s.io/"+apiVersion;
-        String serviceInstanceName = serviceInstance.getJsonObject("metadata").getString("name");
-        String namespace = serviceInstance.getJsonObject("metadata").getString("namespace");
         String secretName = serviceInstanceName + "-credentials-"+UUID.randomUUID().toString().substring(0, 5);
 
         JsonObjectBuilder payload = Json.createObjectBuilder()
@@ -282,15 +271,14 @@ public class ServiceCatalogClient {
         }
 
         String url = baseUrl + "/apis/servicecatalog.k8s.io/"+apiVersion+"/namespaces/"+namespace+"/servicebindings";
-        JsonObject serviceBinding =  executeCreate(authHeader, payload.build(), url);
-        return serviceBinding;
+        return executePOST(authHeader, payload.build().toString(), url);
     }
 
-    public static JsonObject deleteServiceBinding(String baseUrl, String apiVersion, String authHeader,
+    public static String deleteServiceBinding(String baseUrl, String apiVersion, String authHeader,
             String namespace, String bindingName) {
         String url = baseUrl + "/apis/servicecatalog.k8s.io/" + apiVersion + "/namespaces/" + namespace
                 + "/servicebindings/"+bindingName;
-        return deleteExecute(url, authHeader);
+        return executeDELETE(url, authHeader);
     }
 
     private static CloseableHttpClient buildHttpClient()

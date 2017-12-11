@@ -20,11 +20,13 @@ package io.kubernetes.client;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * ServiceBindingStatus represents the current status of a ServiceBinding.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ServiceBindingStatus {
     public enum ServiceBindingOperation {
         Bind, Unbind;

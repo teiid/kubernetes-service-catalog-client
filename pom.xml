@@ -4,7 +4,7 @@
 	<groupId>org.osb</groupId>
 	<artifactId>kubernetes-service-catalog-client</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>kubernetes-service-catalog-client</name>
 	<url>https://github.com/openservicebrokerapi/servicebroker</url>
 
@@ -38,9 +38,10 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 
 		<org.apache.httpcomponents.version>4.5.3</org.apache.httpcomponents.version>
-		<com.fasterxml.jackson.core.version>2.9.1</com.fasterxml.jackson.core.version>
+		<version.com.fasterxml.jackson>2.7.4</version.com.fasterxml.jackson>
 		<junit.version>4.12</junit.version>
-		<javax.json.version>1.1</javax.json.version>
+		<javax.json.version>1.1.2</javax.json.version>
+        <org.glassfish.javax.json.version>1.1</org.glassfish.javax.json.version>
 	</properties>
 
 	<distributionManagement>
@@ -99,11 +100,16 @@
 			<artifactId>httpclient</artifactId>
 			<version>${org.apache.httpcomponents.version}</version>
 		</dependency>
-		<dependency>
+ 		<dependency>
 			<groupId>javax.json</groupId>
 			<artifactId>javax.json-api</artifactId>
 			<version>${javax.json.version}</version>
 		</dependency>
+        <dependency>
+          <groupId>org.glassfish</groupId>
+          <artifactId>javax.json</artifactId>
+          <version>${org.glassfish.javax.json.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -111,19 +117,14 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.json</artifactId>
-			<version>1.1</version>
-		</dependency>
-		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.9.2</version>
+			<version>${version.com.fasterxml.jackson}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
-			<version>2.9.2</version>
+			<version>${version.com.fasterxml.jackson}</version>
 		</dependency>
 	</dependencies>
 </project>

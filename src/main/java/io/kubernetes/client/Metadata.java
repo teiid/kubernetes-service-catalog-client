@@ -23,10 +23,13 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Metadata {
     private String name;
+    private String namespace;
     private String selfLink;
     private String uid;
     private String resourceVersion;
@@ -45,6 +48,16 @@ public class Metadata {
         this.name = name;
     }
 
+    @JsonProperty("namespace")
+    public String getNamespace() {
+        return namespace;
+    }
+
+    @JsonProperty("namespace")
+    public void setNamespace(String namespace) {
+        this.namespace = namespace;
+    }
+    
     @JsonProperty("selfLink")
     public String getSelfLink() {
         return selfLink;

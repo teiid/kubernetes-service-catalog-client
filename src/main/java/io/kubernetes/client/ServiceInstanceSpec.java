@@ -17,9 +17,14 @@
  */
 package io.kubernetes.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ServiceInstanceSpec {
     private String clusterServiceClassExternalName;
     private String clusterServicePlanExternalName;
@@ -29,16 +34,16 @@ public class ServiceInstanceSpec {
     private ClusterObjectReference ClusterServicePlanRef;
     @JsonDeserialize(using = RawJsonDeserializer.class)
     private String parameters;
-    private ParametersFromSource parametersFrom;
+    private List<ParametersFromSource> parametersFrom = new ArrayList<>();
     private String externalID;
     private UserInfo userInfo;
     private long updateRequests;
 
     /**
-     * // ClusterServiceClassExternalName is the human-readable name of the //
-     * service as reported by the broker. Note that if the broker changes // the
-     * name of the ClusterServiceClass, it will not be reflected here, // and to see
-     * the current name of the ClusterServiceClass, you should // follow the
+     *  ClusterServiceClassExternalName is the human-readable name of the 
+     * service as reported by the broker. Note that if the broker changes  the
+     * name of the ClusterServiceClass, it will not be reflected here,  and to see
+     * the current name of the ClusterServiceClass, you should  follow the
      * ClusterServiceClassRef below.
      *
      * @return
@@ -54,10 +59,10 @@ public class ServiceInstanceSpec {
     }
 
     /**
-     * // ClusterServicePlanExternalName is the human-readable name of the plan //
-     * as reported by the broker. Note that if the broker changes the name // of the
-     * ClusterServicePlan, it will not be reflected here, and to see // the current
-     * name of the ClusterServicePlan, you should follow the //
+     *  ClusterServicePlanExternalName is the human-readable name of the plan 
+     * as reported by the broker. Note that if the broker changes the name  of the
+     * ClusterServicePlan, it will not be reflected here, and to see  the current
+     * name of the ClusterServicePlan, you should follow the 
      * ClusterServicePlanRef below.
      *
      * @return
@@ -73,7 +78,7 @@ public class ServiceInstanceSpec {
     }
 
     /**
-     * / ClusterServiceClassName is the kubernetes name of the //
+     * / ClusterServiceClassName is the kubernetes name of the 
      * ClusterServiceClass.
      *
      * @return
@@ -104,8 +109,8 @@ public class ServiceInstanceSpec {
     }
 
     /**
-     * // ClusterServiceClassRef is a reference to the ClusterServiceClass // that
-     * the user selected. // This is set by the controller based on //
+     *  ClusterServiceClassRef is a reference to the ClusterServiceClass  that
+     * the user selected.  This is set by the controller based on 
      * ClusterServiceClassExternalName
      *
      * @return
@@ -121,8 +126,8 @@ public class ServiceInstanceSpec {
     }
 
     /**
-     * // ClusterServicePlanRef is a reference to the ClusterServicePlan // that the
-     * user selected. // This is set by the controller based on //
+     *  ClusterServicePlanRef is a reference to the ClusterServicePlan  that the
+     * user selected.  This is set by the controller based on 
      * ClusterServicePlanExternalName
      *
      * @return
@@ -138,14 +143,14 @@ public class ServiceInstanceSpec {
     }
 
     /**
-     * // Parameters is a set of the parameters to be passed to the underlying //
-     * broker. The inline YAML/JSON payload to be translated into equivalent // JSON
-     * object. If a top-level parameter name exists in multiples sources // among
-     * `Parameters` and `ParametersFrom` fields, it is considered to be // a user
-     * error in the specification. // // The Parameters field is NOT secret or
-     * secured in any way and should // NEVER be used to hold sensitive information.
-     * To set parameters that // contain secret information, you should ALWAYS store
-     * that information // in a Secret and use the ParametersFrom field. // //
+     *  Parameters is a set of the parameters to be passed to the underlying 
+     * broker. The inline YAML/JSON payload to be translated into equivalent  JSON
+     * object. If a top-level parameter name exists in multiples sources  among
+     * `Parameters` and `ParametersFrom` fields, it is considered to be  a user
+     * error in the specification.   The Parameters field is NOT secret or
+     * secured in any way and should  NEVER be used to hold sensitive information.
+     * To set parameters that  contain secret information, you should ALWAYS store
+     * that information  in a Secret and use the ParametersFrom field.  
      * +optional
      *
      * @return
@@ -161,20 +166,20 @@ public class ServiceInstanceSpec {
     }
 
     /**
-     * // List of sources to populate parameters. // If a top-level parameter name
-     * exists in multiples sources among // `Parameters` and `ParametersFrom`
-     * fields, it is // considered to be a user error in the specification //
+     *  List of sources to populate parameters.  If a top-level parameter name
+     * exists in multiples sources among  `Parameters` and `ParametersFrom`
+     * fields, it is  considered to be a user error in the specification 
      * +optional
      *
      * @return
      */
     @JsonProperty("parametersFrom")
-    public ParametersFromSource getParametersFrom() {
+    public List<ParametersFromSource> getParametersFrom() {
         return parametersFrom;
     }
 
     @JsonProperty("parametersFrom")
-    public void setParametersFrom(ParametersFromSource parametersFrom) {
+    public void setParametersFrom(List<ParametersFromSource> parametersFrom) {
         this.parametersFrom = parametersFrom;
     }
 
@@ -194,10 +199,10 @@ public class ServiceInstanceSpec {
     }
 
     /**
-     * Currently, this field is ALPHA: it may change or disappear at any time // and
-     * its data will not be migrated. // // UserInfo contains information about the
-     * user that last modified this // instance. This field is set by the API server
-     * and not settable by the // end-user. User-provided values for this field are
+     * Currently, this field is ALPHA: it may change or disappear at any time  and
+     * its data will not be migrated.   UserInfo contains information about the
+     * user that last modified this  instance. This field is set by the API server
+     * and not settable by the  end-user. User-provided values for this field are
      * not saved.
      *
      * @return
@@ -213,10 +218,10 @@ public class ServiceInstanceSpec {
     }
 
     /**
-     * // UpdateRequests is a strictly increasing, non-negative integer counter that
-     * // can be manually incremented by a user to manually trigger an update. This
-     * // allows for parameters to be updated with any out-of-band changes that have
-     * // been made to the secrets from which the parameters are sourced. //
+     *  UpdateRequests is a strictly increasing, non-negative integer counter that
+     *  can be manually incremented by a user to manually trigger an update. This
+     *  allows for parameters to be updated with any out-of-band changes that have
+     *  been made to the secrets from which the parameters are sourced. 
      * +optional
      *
      * @return
