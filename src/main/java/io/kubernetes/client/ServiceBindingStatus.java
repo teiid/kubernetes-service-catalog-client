@@ -40,6 +40,16 @@ public class ServiceBindingStatus {
     private ServiceBindingPropertiesState externalProperties;
     private boolean orphanMitigationInProgress;
 
+    public boolean isReady() {
+    	List<ServiceBindingCondition> conditions = getConditions();
+    	for (ServiceBindingCondition condition : conditions) {
+    		if (condition.getType() == ServiceBindingCondition.ServiceBindingConditionType.Ready) {
+    			return condition.getStatus() == ConditionStatus.True;
+    		}
+    	}
+    	return false;
+    }    
+    
     @JsonProperty("conditions")
     public List<ServiceBindingCondition> getConditions() {
         return conditions;
