@@ -100,7 +100,7 @@ public class ModelServiceCatalogClient {
     	assert authHeader != null;
         String response = ServiceCatalogClient.getServiceInstance(baseUrl, apiVersion, authHeader,namespace, serviceName);
         return new ObjectMapper()
-                .readerFor(ServiceInstanceList.class)
+                .readerFor(ServiceInstance.class)
                 .readValue(response);
     }
 
