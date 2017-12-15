@@ -48,7 +48,6 @@ public class ServiceInstanceStatus {
     private ServiceInstancePropertiesState externalProperties;
     private ServiceInstanceDeprovisionStatus deprovisionStatus;
 
-    
     public boolean isReady() {
     	List<ServiceInstanceCondition> conditions = getConditions();
     	for (ServiceInstanceCondition condition : conditions) {
