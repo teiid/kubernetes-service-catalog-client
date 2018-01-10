@@ -47,7 +47,7 @@ public class ClusterServicePlanSpec {
      * ClusterServiceBrokerName is the name of the ClusterServiceBroker that
      * offers this ClusterServicePlan.
      *
-     * @return
+     * @return string
      */
     @JsonProperty("clusterServiceBrokerName")
     public String getClusterServiceBrokerName() {
@@ -62,6 +62,7 @@ public class ClusterServicePlanSpec {
     /**
      * ExternalName is the name of this object that the Service Broker exposed
      * this Service Plan as. Mutable.
+     * @return string
      */
     @JsonProperty("externalName")
     public String getExternalName() {
@@ -75,7 +76,7 @@ public class ClusterServicePlanSpec {
 
     /**
      * ExternalID is the identity of this object for use with the OSB API.
-     * @return
+     * @return string
      */
     @JsonProperty("externalID")
     public String getExternalID() {
@@ -89,7 +90,7 @@ public class ClusterServicePlanSpec {
 
     /**
      * Description is a short description of this ClusterServicePlan.
-     * @return
+     * @return string
      */
     @JsonProperty("description")
     public String getDescription() {
@@ -106,7 +107,7 @@ public class ClusterServicePlanSpec {
      * ServiceInstance using this ClusterServicePlan. If set, overrides the value
      * of the ClusterServiceClass.Bindable field.
      *
-     * @return
+     * @return boolean
      */
     @JsonProperty("bindable")
     public boolean isBindable() {
@@ -120,7 +121,7 @@ public class ClusterServicePlanSpec {
 
     /**
      * Free indicates whether this plan is available at no cost.
-     * @return
+     * @return boolean
      */
     @JsonProperty("free")
     public Boolean getFree() {
@@ -137,7 +138,7 @@ public class ClusterServicePlanSpec {
      * user-facing content and display instructions. This field may contain
      * platform-specific conventional values
      *
-     * @return
+     * @return string
      */
     @JsonProperty("externalMetadata")
     public String getExternalMetadata() {
@@ -153,7 +154,7 @@ public class ClusterServicePlanSpec {
      * ClusterServiceClassRef is a reference to the service class that owns this
      * plan.
      *
-     * @return
+     * @return ClusterObjectReference
      */
     @JsonProperty("clusterServiceClassRef")
     public ClusterObjectReference getClusterServiceClassRef() {
@@ -176,7 +177,7 @@ public class ClusterServicePlanSpec {
      * the schema for the parameters that may be supplied when provisioning a new
      * ServiceInstance on this plan.
      *
-     * @param serviceInstanceCreateParameterSchema
+     * @param serviceInstanceCreateParameterSchema schema
      */
     @JsonProperty("instanceCreateParameterSchema")
     public void setServiceInstanceCreateParameterSchema(String serviceInstanceCreateParameterSchema) {
@@ -190,7 +191,7 @@ public class ClusterServicePlanSpec {
      * has been provisioned on this plan. This field only has meaning if the
      * ClusterServiceClass is PlanUpdatable.
      *
-     * @return
+     * @return string
      */
     @JsonProperty("instanceUpdateParameterSchema")
     public String getServiceInstanceUpdateParameterSchema() {
@@ -208,7 +209,7 @@ public class ClusterServicePlanSpec {
      * the schema for the parameters that may be supplied binding to an
      * ServiceInstance on this plan.
      *
-     * @return
+     * @return string
      */
     @JsonProperty("serviceBindingCreateParameterSchema")
     public String getServiceBindingCreateParameterSchema() {

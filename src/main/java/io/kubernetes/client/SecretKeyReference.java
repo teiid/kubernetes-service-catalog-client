@@ -30,7 +30,7 @@ public class SecretKeyReference {
 
     /**
      * The name of the secret in the pod's namespace to select from.
-     * @return
+     * @return String
      */
     @JsonProperty("name")
     public String getName() {
@@ -44,7 +44,7 @@ public class SecretKeyReference {
 
     /**
      * The key of the secret to select from. Must be a valid secret key.
-     * @return
+     * @return String
      */
     @JsonProperty("key")
     public String getKey() {

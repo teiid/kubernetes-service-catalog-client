@@ -30,9 +30,11 @@ public class BasicAuthConfig {
     /**
      * SecretRef is a reference to a Secret containing information the catalog
      * should use to authenticate to this ServiceBroker. Required at least one
-     * of the fields:<br/>
-     *  - Secret.Data["username"] - username used for authentication<br/>
+     * of the fields:
+     *  - Secret.Data["username"] - username used for authentication
      *  - Secret.Data["password"] - password or token needed for authentication
+     *  
+     *  @return ObjectReference
      */
     @JsonProperty("secretRef")
     public ObjectReference getSecretRef() {

@@ -33,7 +33,7 @@ public class ObjectReference {
     /**
      * Namespace of the referent.
      *
-     * @return
+     * @return string
      */
     @JsonProperty("namespace")
     public String getNamespace() {
@@ -48,7 +48,7 @@ public class ObjectReference {
     /**
      * // Name of the referent.
      *
-     * @return
+     * @return string
      */
     @JsonProperty("name")
     public String getName() {

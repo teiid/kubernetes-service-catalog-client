@@ -36,9 +36,9 @@ public class ServiceBindingPropertiesState {
     /**
      * // Parameters is a blob of the parameters and their values that the broker //
      * knows about for this ServiceBinding. If a parameter was // sourced from a
-     * secret, its value will be "<redacted>" in this blob.
+     * secret, its value will be "&lt;redacted&gt;" in this blob.
      *
-     * @return
+     * @return string
      */
     @JsonProperty("parameters")
     public String getParameters() {
@@ -53,7 +53,7 @@ public class ServiceBindingPropertiesState {
     /**
      * // ParametersChecksum is the checksum of the parameters that were sent.
      *
-     * @return
+     * @return string
      */
     @JsonProperty("parameterChecksum")
     public String getParametersChecksum() {
@@ -68,7 +68,7 @@ public class ServiceBindingPropertiesState {
     /**
      * // UserInfo is information about the user that made the request.
      *
-     * @return
+     * @return UserInfo
      */
     @JsonProperty("userInfo")
     public UserInfo getUserInfo() {

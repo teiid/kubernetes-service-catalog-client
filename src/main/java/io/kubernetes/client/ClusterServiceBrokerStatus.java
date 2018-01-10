@@ -46,6 +46,7 @@ public class ClusterServiceBrokerStatus {
      * ReconciledGeneration is the 'Generation' of the ClusterServiceBrokerSpec
      * that was last processed by the controller. The reconciled generation is
      * updated even if the controller failed to process the spec.
+     * @return long
      */
     @JsonProperty("reconciledGeneration")
     public long getReconciledGeneration() {
@@ -59,6 +60,7 @@ public class ClusterServiceBrokerStatus {
 
     /**
      * OperationStartTime is the time at which the current operation began.
+     * @return date
      */
     @JsonProperty("operationStartTime")
     public Date getOperationStartTime() {

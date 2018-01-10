@@ -43,6 +43,7 @@ public class ClusterServiceClassSpec {
     /**
      * ClusterServiceBrokerName is the reference to the Broker that provides this
      * ClusterServiceClass. Immutable.
+     * @return string
      */
     @JsonProperty("clusterServiceBrokerName")
     public String getClusterServiceBrokerName() {
@@ -57,6 +58,7 @@ public class ClusterServiceClassSpec {
     /**
      * ExternalName is the name of this object that the Service Broker exposed
      * this Service Class as. Mutable.
+     * @return string
      */
     @JsonProperty("externalName")
     public String getExternalName() {
@@ -70,7 +72,7 @@ public class ClusterServiceClassSpec {
 
     /**
      * ExternalID is the identity of this object for use with the OSB API.
-     * @return
+     * @return string
      */
     @JsonProperty("externalID")
     public String getExternalID() {
@@ -84,7 +86,7 @@ public class ClusterServiceClassSpec {
 
     /**
      * Description is a short description of this ClusterServiceClass.
-     * @return
+     * @return string
      */
     @JsonProperty("description")
     public String getDescription() {
@@ -100,6 +102,7 @@ public class ClusterServiceClassSpec {
      * Bindable indicates whether a user can create bindings to an
      * ServiceInstance provisioned from this service. ClusterServicePlan  has an
      * optional field called Bindable which overrides the value of  this field.
+     * @return boolean
      */
     @JsonProperty("bindable")
     public boolean isBindable() {
@@ -115,6 +118,7 @@ public class ClusterServiceClassSpec {
      * PlanUpdatable indicates whether instances provisioned from this
      * ClusterServiceClass may change ClusterServicePlans after being
      * provisioned.
+     * @return boolean
      */
     @JsonProperty("planUpdatable")
     public boolean isPlanUpdatable() {
@@ -130,6 +134,7 @@ public class ClusterServiceClassSpec {
      * ExternalMetadata is a blob of information about the ClusterServiceClass,
      * meant to be user-facing content and display instructions. This field may
      * contain platform-specific conventional values
+     * @return string
      */
     @JsonProperty("externalMetadata")
     public String getExternalMetadata() {
@@ -148,7 +153,7 @@ public class ClusterServiceClassSpec {
      * These are used in Cloud Foundry in a way similar to Kubernetes labels, but
      * they currently have no special meaning in Kubernetes.
      *
-     * @return
+     * @return string array
      */
     @JsonProperty("tags")
     public String[] getTags() {
@@ -167,6 +172,7 @@ public class ClusterServiceClassSpec {
      * service within Cloud Foundry. These 'permissions' have no meaning within
      * Kubernetes and an ServiceInstance provisioned from this
      * ClusterServiceClass will not work correctly.
+     * @return string array
      */
     @JsonProperty("requires")
     public String[] getRequires() {

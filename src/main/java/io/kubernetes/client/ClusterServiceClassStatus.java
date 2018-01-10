@@ -32,7 +32,7 @@ public class ClusterServiceClassStatus {
      * RemovedFromBrokerCatalog indicates that the broker removed the service
      * from its catalog.
      *
-     * @return
+     * @return boolean
      */
     @JsonProperty("removedFromBrokerCatalog")
     public boolean isRemovedFromBrokerCatalog() {

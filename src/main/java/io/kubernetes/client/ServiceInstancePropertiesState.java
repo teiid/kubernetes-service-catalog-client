@@ -39,7 +39,7 @@ public class ServiceInstancePropertiesState {
      * knows this ServiceInstance to be on. This is the human // readable plan name
      * from the OSB API.
      *
-     * @return
+     * @return string
      */
     @JsonProperty("clusterServicePlanExternalName")
     public String getClusterServicePlanExternalName() {
@@ -52,11 +52,11 @@ public class ServiceInstancePropertiesState {
     }
 
     /**
-     * // Parameters is a blob of the parameters and their values that the broker //
-     * knows about for this ServiceInstance. If a parameter was sourced from // a
-     * secret, its value will be "<redacted>" in this blob.
+     * Parameters is a blob of the parameters and their values that the broker
+     * knows about for this ServiceInstance. If a parameter was sourced from a
+     * secret, its value will be "redacted" in this blob.
      *
-     * @return
+     * @return string
      */
     @JsonProperty("parameters")
     public String getParameters() {
@@ -71,7 +71,7 @@ public class ServiceInstancePropertiesState {
     /**
      * // ParametersChecksum is the checksum of the parameters that were sent.
      *
-     * @return
+     * @return string
      */
     @JsonProperty("parameterChecksum")
     public String getParametersChecksum() {
@@ -85,6 +85,7 @@ public class ServiceInstancePropertiesState {
 
     /**
      * UserInfo is information about the user that made the request.
+     * @return UserInfo
      */
     @JsonProperty("userInfo")
     public UserInfo getUserInfo() {

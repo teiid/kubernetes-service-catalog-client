@@ -64,7 +64,7 @@ public class ServiceBindingStatus {
      * // CurrentOperation is the operation the Controller is currently performing
      * // on the ServiceBinding.
      *
-     * @return
+     * @return ServiceBindingOperation
      */
     @JsonProperty("currentOperation")
     public ServiceBindingOperation getCurrentOperation() {
@@ -81,7 +81,7 @@ public class ServiceBindingStatus {
      * was last processed by the controller. // The reconciled generation is updated
      * even if the controller failed to // process the spec.
      *
-     * @return
+     * @return long
      */
     @JsonProperty("reconciledGeneration")
     public long getReconciledGeneration() {
@@ -96,7 +96,7 @@ public class ServiceBindingStatus {
     /**
      * // OperationStartTime is the time at which the current operation began.
      *
-     * @return
+     * @return date
      */
     @JsonProperty("operationStartTime")
     public Date getOperationStartTime() {
@@ -113,7 +113,7 @@ public class ServiceBindingStatus {
      * a Bind is in progress. If the current // operation is an Unbind, this will be
      * nil.
      *
-     * @return
+     * @return ServiceBindingPropertiesState
      */
     @JsonProperty("inProgressProperties")
     public ServiceBindingPropertiesState getInProgressProperties() {
@@ -130,7 +130,7 @@ public class ServiceBindingStatus {
      * // ExternalProperties is the properties state of the // ServiceBinding which
      * the broker knows about.
      *
-     * @return
+     * @return ServiceBindingPropertiesState
      */
     @JsonProperty("externalProperties")
     public ServiceBindingPropertiesState getExternalProperties() {
@@ -146,7 +146,7 @@ public class ServiceBindingStatus {
      * // OrphanMitigationInProgress is a flag that represents whether orphan //
      * mitigation is in progress.
      *
-     * @return
+     * @return boolean
      */
     @JsonProperty("orphanMitigationInProgress")
     public boolean isOrphanMitigationInProgress() {

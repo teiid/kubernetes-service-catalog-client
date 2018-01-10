@@ -28,8 +28,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * ServiceInstance should have the plan and/or parameters updated at the
  * ClusterServiceBroker.
  *
- * @author rareddy
- *
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class ServiceInstance {

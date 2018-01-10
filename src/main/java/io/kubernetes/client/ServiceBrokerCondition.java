@@ -21,7 +21,7 @@ public class ServiceBrokerCondition {
 
     /**
      * Type of the condition, currently ('Ready').
-     * @return
+     * @return ServiceBrokerConditionType
      */
     @JsonProperty("type")
     public ServiceBrokerConditionType getType() {
@@ -35,7 +35,7 @@ public class ServiceBrokerCondition {
 
     /**
      * Status of the condition, one of ('True', 'False', 'Unknown').
-     * @return
+     * @return ConditionStatus
      */
     @JsonProperty("status")
     public ConditionStatus getStatus() {
@@ -50,6 +50,7 @@ public class ServiceBrokerCondition {
     /**
      * LastTransitionTime is the timestamp corresponding to the last status
      * change of this condition.
+     * @return Date
      */
     @JsonProperty("lastTransitionTime")
     public Date getLastTransitionTime() {
@@ -64,6 +65,7 @@ public class ServiceBrokerCondition {
     /**
      * Reason is a brief machine readable explanation for the condition's last
      * transition.
+     * @return string
      */
     @JsonProperty("reason")
     public String getReason() {
@@ -78,6 +80,8 @@ public class ServiceBrokerCondition {
     /**
      * Message is a human readable description of the details of the last
      * transition, complementing reason.
+     * 
+     * @return String
      */
     @JsonProperty("message")
     public String getMessage() {
