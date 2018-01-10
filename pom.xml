@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.osb</groupId>
+	<groupId>org.teiid</groupId>
 	<artifactId>kubernetes-service-catalog-client</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0.0-SNAPSHOT</version>
@@ -41,7 +41,7 @@
 		<version.com.fasterxml.jackson>2.7.4</version.com.fasterxml.jackson>
 		<junit.version>4.12</junit.version>
 		<javax.json.version>1.1.2</javax.json.version>
-        <org.glassfish.javax.json.version>1.1</org.glassfish.javax.json.version>
+		<org.glassfish.javax.json.version>1.1</org.glassfish.javax.json.version>
 	</properties>
 
 	<distributionManagement>
@@ -57,7 +57,7 @@
 
 	<profiles>
 		<profile>
-			<id>final-release</id>
+			<id>release</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -77,6 +77,19 @@
 						</executions>
 					</plugin>
 					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>2.2.1</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
 						<artifactId>maven-gpg-plugin</artifactId>
 						<version>1.6</version>
 						<executions>
@@ -89,6 +102,17 @@
 							</execution>
 						</executions>
 					</plugin>
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.7</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>					
 				</plugins>
 			</build>
 		</profile>
@@ -100,16 +124,16 @@
 			<artifactId>httpclient</artifactId>
 			<version>${org.apache.httpcomponents.version}</version>
 		</dependency>
- 		<dependency>
+		<dependency>
 			<groupId>javax.json</groupId>
 			<artifactId>javax.json-api</artifactId>
 			<version>${javax.json.version}</version>
 		</dependency>
-        <dependency>
-          <groupId>org.glassfish</groupId>
-          <artifactId>javax.json</artifactId>
-          <version>${org.glassfish.javax.json.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>${org.glassfish.javax.json.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
