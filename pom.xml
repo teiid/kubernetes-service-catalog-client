@@ -17,7 +17,7 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:git@github.com:teiid/kubernetes-service-catalog-client.git</connection>
+		<connection>scm:git:git://github.com/teiid/kubernetes-service-catalog-client.git</connection>
 		<developerConnection>scm:git:git@github.com:teiid/kubernetes-service-catalog-client.git</developerConnection>
 		<url>https://github.com/teiid/kubernetes-service-catalog-client</url>
 		<tag>HEAD</tag>
@@ -44,20 +44,19 @@
 		<org.glassfish.javax.json.version>1.1</org.glassfish.javax.json.version>
 	</properties>
 
-	<distributionManagement>
-		<repository>
-			<id>oss.sonatype.org</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-		<snapshotRepository>
-			<id>oss.sonatype.org</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
-
 	<profiles>
 		<profile>
 			<id>release</id>
+			<distributionManagement>
+				<repository>
+					<id>oss.sonatype.org</id>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
+				<snapshotRepository>
+					<id>oss.sonatype.org</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+				</snapshotRepository>
+			</distributionManagement>			
 			<build>
 				<plugins>
 					<plugin>
