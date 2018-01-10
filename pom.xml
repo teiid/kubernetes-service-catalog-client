@@ -67,6 +67,7 @@
 						<configuration>
 							<maxmemory>512m</maxmemory>
 							<failOnError>false</failOnError>
+							<additionalparam>-Xdoclint:none</additionalparam>
 						</configuration>
 						<executions>
 							<execution>
