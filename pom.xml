@@ -3,7 +3,7 @@
 	<groupId>org.teiid</groupId>
 	<artifactId>kubernetes-service-catalog-client</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<name>kubernetes-service-catalog-client</name>
 	<url>https://github.com/openservicebrokerapi/servicebroker</url>
 	<description>A Java Client for OpenShift/Kubernetes Service Catalog</description>
@@ -19,7 +19,7 @@
 		<connection>scm:git:git://github.com/teiid/kubernetes-service-catalog-client.git</connection>
 		<developerConnection>scm:git:git@github.com:teiid/kubernetes-service-catalog-client.git</developerConnection>
 		<url>https://github.com/teiid/kubernetes-service-catalog-client</url>
-		<tag>HEAD</tag>
+		<tag>kubernetes-service-catalog-client-0.0.2</tag>
 	</scm>
 	
 	<distributionManagement>
