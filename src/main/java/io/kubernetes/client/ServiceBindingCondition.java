@@ -40,7 +40,7 @@ public class ServiceBindingCondition {
     /**
      * Type of the condition, currently ('Ready').
      *
-     * @return
+     * @return ServiceBindingConditionType
      */
     @JsonProperty("type")
     public ServiceBindingConditionType getType() {
@@ -55,7 +55,7 @@ public class ServiceBindingCondition {
     /**
      * Status of the condition, one of ('True', 'False', 'Unknown').
      *
-     * @return
+     * @return ConditionStatus
      */
     @JsonProperty("status")
     public ConditionStatus getStatus() {
@@ -71,7 +71,7 @@ public class ServiceBindingCondition {
      * LastTransitionTime is the timestamp corresponding to the last status //
      * change of this condition.
      *
-     * @return
+     * @return Date
      */
     @JsonProperty("lastTransitionTime")
     public Date getLastTransitionTime() {
@@ -87,7 +87,7 @@ public class ServiceBindingCondition {
      * Reason is a brief machine readable explanation for the condition's last //
      * transition.
      *
-     * @return
+     * @return String
      */
     @JsonProperty("reason")
     public String getReason() {
@@ -103,7 +103,7 @@ public class ServiceBindingCondition {
      * // Message is a human readable description of the details of the last //
      * transition, complementing reason.
      *
-     * @return
+     * @return String
      */
     @JsonProperty("message")
     public String getMessage() {

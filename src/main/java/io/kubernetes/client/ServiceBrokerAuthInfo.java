@@ -33,6 +33,8 @@ public class ServiceBrokerAuthInfo {
 
     /**
      * Basic provides configuration for basic authentication.
+     * 
+     * @return BasicAuthConfig
      */
     @JsonProperty("basic")
     public BasicAuthConfig getBasic() {
@@ -49,6 +51,8 @@ public class ServiceBrokerAuthInfo {
      * bearer token. The value is referenced from the 'token' field of the given
      * secret. This value should only contain the token value and not the
      * `Bearer` scheme.
+     * 
+     * @return BearerTokenAuthConfig
      */
     @JsonProperty("bearer")
     public BearerTokenAuthConfig getBearer() {

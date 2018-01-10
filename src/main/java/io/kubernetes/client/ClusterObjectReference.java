@@ -30,6 +30,7 @@ public class ClusterObjectReference {
 
     /**
      * Name of the referent.
+     * @return string
      */
     @JsonProperty("name")
     public String getName() {

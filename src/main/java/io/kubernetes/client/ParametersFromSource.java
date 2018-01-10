@@ -31,7 +31,7 @@ public class ParametersFromSource {
      *  The Secret key to select from.  The value must be a JSON object.
      * +optional
      *
-     * @return
+     * @return SecretKeyReference
      */
     @JsonProperty("secretKeyRef")
     public SecretKeyReference getSecretKeyRef() {

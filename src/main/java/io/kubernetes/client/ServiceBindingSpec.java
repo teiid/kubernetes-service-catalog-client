@@ -43,7 +43,7 @@ public class ServiceBindingSpec {
      * ServiceInstanceRef is the reference to the Instance this ServiceBinding is
      * to.
      *
-     * @return
+     * @return LocalObjectReference
      */
     @JsonProperty("instanceRef")
     public LocalObjectReference getServiceInstanceRef() {
@@ -66,7 +66,7 @@ public class ServiceBindingSpec {
      * that information // in a Secret and use the ParametersFrom field. // //
      * +optional
      *
-     * @return
+     * @return string
      */
     @JsonProperty("parameters")
     public String getParameters() {
@@ -84,7 +84,7 @@ public class ServiceBindingSpec {
      * fields, it is // considered to be a user error in the specification. //
      * +optional
      *
-     * @return
+     * @return List of ParametersFromSource
      */
     @JsonProperty("parametersFrom")
     public List<ParametersFromSource> getParametersFrom() {
@@ -100,7 +100,7 @@ public class ServiceBindingSpec {
      * // SecretName is the name of the secret to create in the ServiceBinding's //
      * namespace that will hold the credentials associated with the ServiceBinding.
      *
-     * @return
+     * @return string
      */
     @JsonProperty("secretName")
     public String getSecretName() {
@@ -116,7 +116,7 @@ public class ServiceBindingSpec {
      * // ExternalID is the identity of this object for use with the OSB API. // //
      * Immutable.
      *
-     * @return
+     * @return string
      */
     @JsonProperty("externalID")
     public String getExternalID() {
@@ -135,7 +135,7 @@ public class ServiceBindingSpec {
      * API server and not // settable by the end-user. User-provided values for this
      * field are not saved. // +optional
      *
-     * @return
+     * @return userinfo
      */
     @JsonProperty("userInfo")
     public UserInfo getUserInfo() {

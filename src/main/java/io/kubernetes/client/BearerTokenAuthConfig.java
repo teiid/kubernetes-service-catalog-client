@@ -29,8 +29,9 @@ public class BearerTokenAuthConfig {
 
     /**
      * SecretRef is a reference to a Secret containing information the catalog
-     * should use to authenticate to this ServiceBroker. Required field:<br/>
+     * should use to authenticate to this ServiceBroker. Required field:
      *  - Secret.Data["token"] - bearer token for authentication
+     *  @return ObjectReference
      */
     @JsonProperty("secretRef")
     public ObjectReference getSecretRef() {

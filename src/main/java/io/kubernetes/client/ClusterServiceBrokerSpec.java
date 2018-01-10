@@ -35,7 +35,7 @@ public class ClusterServiceBrokerSpec {
 
     /**
      * URL is the address used to communicate with the ClusterServiceBroker.
-     * @return
+     * @return string
      */
     @JsonProperty("url")
     public String getUrl() {
@@ -50,6 +50,7 @@ public class ClusterServiceBrokerSpec {
     /**
      * AuthInfo contains the data that the service catalog should use to
      * authenticate with the ClusterServiceBroker.
+     * @return ServiceBrokerAuthInfo
      */
     @JsonProperty("authInfo")
     public ServiceBrokerAuthInfo getAuthInfo() {
@@ -65,6 +66,7 @@ public class ClusterServiceBrokerSpec {
      * InsecureSkipTLSVerify disables TLS certificate verification when
      * communicating with this Broker. This is strongly discouraged. You should
      * use the CABundle instead. optional
+     * @return boolean
      */
     @JsonProperty("insecureSkipTLSVerify")
     public boolean isInsecureSkipTLSVerify() {
@@ -78,7 +80,8 @@ public class ClusterServiceBrokerSpec {
 
     /**
      * CABundle is a PEM encoded CA bundle which will be used to validate a Broker's
-     * serving certificate. // +optional
+     * serving certificate. +optional
+     * @return byte array
      */
     @JsonProperty("caBundle")
     public byte[] getCaBundle() {
@@ -93,6 +96,7 @@ public class ClusterServiceBrokerSpec {
     /**
      * RelistBehavior specifies the type of relist behavior the catalog should
      * exhibit when relisting ClusterServiceClasses available from a broker.
+     * @return ServiceBrokerRelistBehavior
      */
     @JsonProperty("relistBehavior")
     public ServiceBrokerRelistBehavior getRelistBehavior() {
@@ -107,6 +111,7 @@ public class ClusterServiceBrokerSpec {
     /**
      * RelistDuration is the frequency by which a controller will relist the //
      * broker when the RelistBehavior is set to ServiceBrokerRelistBehaviorDuration.
+     * @return string
      */
     @JsonProperty("relistDuration")
     public String getRelistDuration() {
@@ -119,9 +124,10 @@ public class ClusterServiceBrokerSpec {
     }
 
     /**
-     * // RelistRequests is a strictly increasing, non-negative integer counter that
-     * // can be manually incremented by a user to manually trigger a relist. //
-     * +optional
+     * RelistRequests is a strictly increasing, non-negative integer counter that
+     * can be manually incremented by a user to manually trigger a relist. 
+     * optional
+     * @return long
      */
     @JsonProperty("relistRequests")
     public long getRelistRequests() {

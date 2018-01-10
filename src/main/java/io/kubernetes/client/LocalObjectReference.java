@@ -37,7 +37,7 @@ public class LocalObjectReference {
     /**
      * Name of the referent.
      *
-     * @param name
+     * @param name name
      */
     @JsonProperty("name")
     public void setName(String name) {

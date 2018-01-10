@@ -61,7 +61,7 @@ public class ServiceInstanceStatus {
      * Conditions is an array of ServiceInstanceConditions capturing aspects of
      * an ServiceInstance's status.
      *
-     * @return
+     * @return List of ServiceInstanceCondition
      */
     @JsonProperty("conditions")
     public List<ServiceInstanceCondition> getConditions() {
@@ -77,7 +77,7 @@ public class ServiceInstanceStatus {
      * // AsyncOpInProgress is set to true if there is an ongoing async operation //
      * against this Service Instance in progress.
      *
-     * @return
+     * @return boolean
      */
     @JsonProperty("asyncOpInProgress")
     public boolean isAsyncOpInProgress() {
@@ -93,7 +93,7 @@ public class ServiceInstanceStatus {
      * // OrphanMitigationInProgress is set to true if there is an ongoing orphan //
      * mitigation operation against this ServiceInstance in progress.
      *
-     * @return
+     * @return boolean
      */
     @JsonProperty("orphanMitigationInProgress")
     public boolean isOrphanMitigationInProgress() {
@@ -110,7 +110,7 @@ public class ServiceInstanceStatus {
      * async operation started, it should be sent back to the broker // on poll
      * requests as a query param.
      *
-     * @return
+     * @return String
      */
     @JsonProperty("lastOperation")
     public String getLastOperation() {
@@ -126,7 +126,7 @@ public class ServiceInstanceStatus {
      * // DashboardURL is the URL of a web-based management user interface for //
      * the service instance.
      *
-     * @return
+     * @return String
      */
     @JsonProperty("dashboardURL")
     public String getDashboardURL() {
@@ -142,7 +142,7 @@ public class ServiceInstanceStatus {
      * // CurrentOperation is the operation the Controller is currently performing
      * // on the ServiceInstance.
      *
-     * @return
+     * @return ServiceInstanceOperation
      */
     @JsonProperty("currentOperation")
     public ServiceInstanceOperation getCurrentOperation() {
@@ -160,7 +160,7 @@ public class ServiceInstanceStatus {
      * // was last processed by the controller. The reconciled generation is updated
      * // even if the controller failed to process the spec.
      *
-     * @return
+     * @return long
      */
     @JsonProperty("reconciledGeneration")
     public long getReconciledGeneration() {
@@ -175,7 +175,7 @@ public class ServiceInstanceStatus {
     /**
      * // OperationStartTime is the time at which the current operation began.
      *
-     * @return
+     * @return Date
      */
     @JsonProperty("operationStartTime")
     public Date getOperationStartTime() {
@@ -192,7 +192,7 @@ public class ServiceInstanceStatus {
      * Provision or Update is in progress. If the current operation is a //
      * Deprovision, this will be nil.
      *
-     * @return
+     * @return ServiceInstancePropertiesState
      */
     @JsonProperty("inProgressProperties")
     public ServiceInstancePropertiesState getInProgressProperties() {
@@ -208,7 +208,7 @@ public class ServiceInstanceStatus {
      * ExternalProperties is the properties state of the ServiceInstance which the
      * // broker knows about.
      *
-     * @return
+     * @return ServiceInstancePropertiesState
      */
     @JsonProperty("externalProperties")
     public ServiceInstancePropertiesState getExternalProperties() {
@@ -224,7 +224,7 @@ public class ServiceInstanceStatus {
      * DeprovisionStatus describes what has been done to deprovision the //
      * ServiceInstance.
      *
-     * @return
+     * @return ServiceInstanceDeprovisionStatus 
      */
     @JsonProperty("deprovisionStatus")
     public ServiceInstanceDeprovisionStatus getDeprovisionStatus() {

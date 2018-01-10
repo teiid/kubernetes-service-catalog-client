@@ -46,7 +46,7 @@ public class ServiceInstanceSpec {
      * the current name of the ClusterServiceClass, you should  follow the
      * ClusterServiceClassRef below.
      *
-     * @return
+     * @return String
      */
     @JsonProperty("clusterServiceClassExternalName")
     public String getClusterServiceClassExternalName() {
@@ -65,7 +65,7 @@ public class ServiceInstanceSpec {
      * name of the ClusterServicePlan, you should follow the 
      * ClusterServicePlanRef below.
      *
-     * @return
+     * @return String
      */
     @JsonProperty("clusterServicePlanExternalName")
     public String getClusterServicePlanExternalName() {
@@ -81,7 +81,7 @@ public class ServiceInstanceSpec {
      * / ClusterServiceClassName is the kubernetes name of the 
      * ClusterServiceClass.
      *
-     * @return
+     * @return String
      */
     @JsonProperty("clusterServiceClassName")
     public String getClusterServiceClassName() {
@@ -96,7 +96,7 @@ public class ServiceInstanceSpec {
     /**
      * ClusterServicePlanName is kubernetes name of the ClusterServicePlan.
      *
-     * @return
+     * @return String
      */
     @JsonProperty("clusterServicePlanName")
     public String getClusterServicePlanName() {
@@ -113,7 +113,7 @@ public class ServiceInstanceSpec {
      * the user selected.  This is set by the controller based on 
      * ClusterServiceClassExternalName
      *
-     * @return
+     * @return ClusterObjectReference
      */
     @JsonProperty("clusterServiceClassRef")
     public ClusterObjectReference getClusterServiceClassRef() {
@@ -130,7 +130,7 @@ public class ServiceInstanceSpec {
      * user selected.  This is set by the controller based on 
      * ClusterServicePlanExternalName
      *
-     * @return
+     * @return ClusterObjectReference
      */
     @JsonProperty("clusterServicePlanRef")
     public ClusterObjectReference getClusterServicePlanRef() {
@@ -153,7 +153,7 @@ public class ServiceInstanceSpec {
      * that information  in a Secret and use the ParametersFrom field.  
      * +optional
      *
-     * @return
+     * @return String
      */
     @JsonProperty("parameters")
     public String getParameters() {
@@ -171,7 +171,7 @@ public class ServiceInstanceSpec {
      * fields, it is  considered to be a user error in the specification 
      * +optional
      *
-     * @return
+     * @return list of ParametersFromSource
      */
     @JsonProperty("parametersFrom")
     public List<ParametersFromSource> getParametersFrom() {
@@ -186,7 +186,7 @@ public class ServiceInstanceSpec {
     /**
      * ExternalID is the identity of this object for use with the OSB SB API.
      *
-     * @return
+     * @return string
      */
     @JsonProperty("externalID")
     public String getExternalID() {
@@ -205,7 +205,7 @@ public class ServiceInstanceSpec {
      * and not settable by the  end-user. User-provided values for this field are
      * not saved.
      *
-     * @return
+     * @return UserInfo
      */
     @JsonProperty("userInfo")
     public UserInfo getUserInfo() {
@@ -224,7 +224,7 @@ public class ServiceInstanceSpec {
      *  been made to the secrets from which the parameters are sourced. 
      * +optional
      *
-     * @return
+     * @return long
      */
     @JsonProperty("updateRequests")
     public long getUpdateRequests() {
