@@ -3,7 +3,7 @@
 	<groupId>org.teiid</groupId>
 	<artifactId>kubernetes-service-catalog-client</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>kubernetes-service-catalog-client</name>
 	<url>https://github.com/openservicebrokerapi/servicebroker</url>
 
@@ -19,7 +19,7 @@
 		<connection>scm:git:git://github.com/teiid/kubernetes-service-catalog-client.git</connection>
 		<developerConnection>scm:git:git@github.com:teiid/kubernetes-service-catalog-client.git</developerConnection>
 		<url>https://github.com/teiid/kubernetes-service-catalog-client</url>
-		<tag>release-5</tag>
+		<tag>HEAD</tag>
 	</scm>
 	
 	<distributionManagement>
