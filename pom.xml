@@ -17,9 +17,9 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:git@github.com:rareddy/kubernetes-service-catalog-client.git</connection>
-		<developerConnection>scm:git:git@github.com:rareddy/kubernetes-service-catalog-client.git</developerConnection>
-		<url>https://github.com/rareddy/kubernetes-service-catalog-client</url>
+		<connection>scm:git:git@github.com:teiid/kubernetes-service-catalog-client.git</connection>
+		<developerConnection>scm:git:git@github.com:teiid/kubernetes-service-catalog-client.git</developerConnection>
+		<url>https://github.com/teiid/kubernetes-service-catalog-client</url>
 		<tag>HEAD</tag>
 	</scm>
 	<developers>
