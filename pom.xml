@@ -22,6 +22,18 @@
 		<url>https://github.com/teiid/kubernetes-service-catalog-client</url>
 		<tag>HEAD</tag>
 	</scm>
+	
+	<distributionManagement>
+		<repository>
+			<id>oss.sonatype.org</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+		<snapshotRepository>
+			<id>oss.sonatype.org</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+		
 	<developers>
 		<developer>
 			<name>Ramesh Reddy</name>
@@ -43,20 +55,10 @@
 		<javax.json.version>1.1.2</javax.json.version>
 		<org.glassfish.javax.json.version>1.1</org.glassfish.javax.json.version>
 	</properties>
-
+	
 	<profiles>
 		<profile>
-			<id>release</id>
-			<distributionManagement>
-				<repository>
-					<id>oss.sonatype.org</id>
-					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-				</repository>
-				<snapshotRepository>
-					<id>oss.sonatype.org</id>
-					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-				</snapshotRepository>
-			</distributionManagement>			
+			<id>release</id>			
 			<build>
 				<plugins>
 					<plugin>
@@ -101,6 +103,17 @@
 							</execution>
 						</executions>
 					</plugin>
+					<plugin>
+						<artifactId>maven-release-plugin</artifactId>
+						<version>2.5.3</version>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.maven.scm</groupId>
+								<artifactId>maven-scm-provider-gitexe</artifactId>
+								<version>1.9.5</version>
+							</dependency>
+						</dependencies>
+					</plugin>					
 				</plugins>
 			</build>
 		</profile>
