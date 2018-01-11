@@ -8,6 +8,8 @@ ModelServiceCatalogClient
 ```
 
 # How to do a release
+```
 git pull upstream master
 mvn -DautoVersionSubmodules=true -P release clean package release:prepare
 mvn -P release release:perform
+```
