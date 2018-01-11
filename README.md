@@ -6,8 +6,16 @@ Mainly take look at the following classes and usage is trivial.
 ServiceCatalogClient
 ModelServiceCatalogClient
 ```
+## Maven usage
+```
+<dependency>
+  <groupId>org.teiid</groupId>
+  <artifactId>kubernetes-service-catalog-client</artifactId>
+  <version>0.0.2</version>
+</dependency>
+```
 
-# How to do a release
+## How to do a release
 ```
 git pull upstream master
 mvn -DautoVersionSubmodules=true -P release clean package release:prepare
