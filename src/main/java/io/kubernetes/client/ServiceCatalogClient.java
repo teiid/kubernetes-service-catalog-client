@@ -69,8 +69,8 @@ public class ServiceCatalogClient {
     }
 
     public static String getClusterServicePlan(String baseUrl, String apiVersion, String authHeader,
-            String serviceClass) {
-        String url = baseUrl + "/apis/servicecatalog.k8s.io/"+apiVersion+"/clusterserviceplans/"+serviceClass;
+            String planName) {
+        String url = baseUrl + "/apis/servicecatalog.k8s.io/"+apiVersion+"/clusterserviceplans/"+planName;
         return executeGET(url, authHeader);
     }
 
