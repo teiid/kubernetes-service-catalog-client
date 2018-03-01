@@ -119,8 +119,6 @@ public class ServiceCatalogClient {
             }
             BasicResponseHandler handler = new BasicResponseHandler();
             String result = handler.handleResponse(response);
-            System.out.println(url);
-            System.out.println(result);
             return result;
         } catch (UnsupportedOperationException | IOException | KeyManagementException | NoSuchAlgorithmException
                 | KeyStoreException e) {
@@ -155,7 +153,7 @@ public class ServiceCatalogClient {
 
         String version = "servicecatalog.k8s.io/"+apiVersion;
         String secretName = serviceClassName + "-parameters-"+UUID.randomUUID().toString().substring(0, 5);
-        if (properties == null || properties.isEmpty()) {
+        if ((properties == null) || properties.isEmpty()) {
             secretName = null;
         }
 
@@ -194,9 +192,6 @@ public class ServiceCatalogClient {
 
     private static String executePOST(String authHeader, String payload, String url) {
         try {
-            System.out.println("URL = " + url);
-            System.out.println("PAYLOAD = " + payload);
-
             CloseableHttpClient client = buildHttpClient();
             HttpPost request = new HttpPost(url);
             HttpEntity payloadEntity = new StringEntity(payload, "UTF-8");
@@ -209,8 +204,7 @@ public class ServiceCatalogClient {
                 throw new RuntimeException(response.getStatusLine().getReasonPhrase());
             }
             BasicResponseHandler handler = new BasicResponseHandler();
-            String result = handler.handleResponse(response);            
-            System.out.println("RESPONSE = "+result);
+            String result = handler.handleResponse(response);
             return result;
         } catch (KeyManagementException | NoSuchAlgorithmException | KeyStoreException | UnsupportedOperationException
                 | IOException e) {
@@ -309,14 +303,14 @@ public class ServiceCatalogClient {
         }
 
         JsonArray conditions = status.getJsonArray("conditions");
-        if (conditions == null || conditions.isEmpty()) {
+        if ((conditions == null) || conditions.isEmpty()) {
             return null;
         }
 
         for (int i = 0; i < conditions.size(); i++) {
             JsonObject condition = conditions.getJsonObject(i);
             String type = condition.getString("type");
-            if (type != null && type.equals("Ready")) {
+            if ((type != null) && type.equals("Ready")) {
                 ServiceCatalogClient.Status s = new Status();
                 s.status = condition.getString("status");
                 s.lastTransitionTime = condition.getString("lastTransitionTime");
