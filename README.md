@@ -11,7 +11,7 @@ ModelServiceCatalogClient
 <dependency>
   <groupId>org.teiid</groupId>
   <artifactId>kubernetes-service-catalog-client</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
 </dependency>
 ```
 
@@ -21,3 +21,5 @@ git pull upstream master
 mvn -DautoVersionSubmodules=true -P release clean package release:prepare
 mvn -P release release:perform
 ```
+
+Then goto https://oss.sonatype.org/#stagingRepositories to promote the jar to Maven Central
