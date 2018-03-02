@@ -34,7 +34,7 @@ public class ResponseTests {
         String servicePlan = "default";
 
         String obj = ServiceCatalogClient.createServiceInstance(baseUrl, apiVersion, authHeader,
-                "Ramesh-postgresql", "myproject", serviceClass, servicePlan, p);
+                "foo-postgresql", "myproject", serviceClass, servicePlan, p);
         System.out.println(obj);
 
     }

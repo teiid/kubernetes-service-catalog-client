@@ -115,7 +115,7 @@ public class ServiceCatalogClient {
             request.addHeader("Authorization", bearer(authHeader));
             HttpResponse response = client.execute(request);
             if (response.getStatusLine().getStatusCode() != 200) {
-                throw new RuntimeException(response.getStatusLine().getReasonPhrase());
+                return null;
             }
             BasicResponseHandler handler = new BasicResponseHandler();
             String result = handler.handleResponse(response);
