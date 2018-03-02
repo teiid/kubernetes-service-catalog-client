@@ -48,6 +48,9 @@ public class ModelServiceCatalogClient {
     public ClusterServiceBrokerList getClusterServiceBrokers() throws IOException {
     	assert authHeader != null;
         String response = ServiceCatalogClient.getClusterServiceBrokers(baseUrl, apiVersion, authHeader);
+        if (response == null) {
+            return null;
+        }        
         return new ObjectMapper()
                 .readerFor(ClusterServiceBrokerList.class)
                 .readValue(response);
@@ -57,6 +60,9 @@ public class ModelServiceCatalogClient {
     	assert authHeader != null;
         String response = ServiceCatalogClient.getClusterServiceBrokerStatus(baseUrl, apiVersion, authHeader,
                 serviceBrokerName);
+        if (response == null) {
+            return null;
+        }        
         return new ObjectMapper()
                 .readerFor(ClusterServiceBroker.class)
                 .readValue(response);
@@ -65,6 +71,9 @@ public class ModelServiceCatalogClient {
     public ClusterServiceClassList getClusterServiceClasses() throws IOException {
     	assert authHeader != null;
         String response = ServiceCatalogClient.getClusterServiceClasses(baseUrl, apiVersion, authHeader);
+        if (response == null) {
+            return null;
+        }        
         return new ObjectMapper()
                 .readerFor(ClusterServiceClassList.class)
                 .readValue(response);
@@ -73,6 +82,9 @@ public class ModelServiceCatalogClient {
     public ClusterServicePlanList getClusterServicePlans() throws IOException {
     	assert authHeader != null;
         String response = ServiceCatalogClient.getClusterServicePlans(baseUrl, apiVersion, authHeader);
+        if (response == null) {
+            return null;
+        }        
         return new ObjectMapper()
                 .readerFor(ClusterServicePlanList.class)
                 .readValue(response);
@@ -83,6 +95,9 @@ public class ModelServiceCatalogClient {
     	assert authHeader != null;
         String response = ServiceCatalogClient.getClusterServicePlan(baseUrl, apiVersion, authHeader,
                 svcClass.getMetadata().getName());
+        if (response == null) {
+            return null;
+        }        
         return new ObjectMapper()
                 .readerFor(ClusterServicePlan.class)
                 .readValue(response);
@@ -91,6 +106,9 @@ public class ModelServiceCatalogClient {
     public ServiceInstanceList getServiceInstances(String namespace) throws IOException {
     	assert authHeader != null;
         String response = ServiceCatalogClient.getServiceInstances(baseUrl, apiVersion, authHeader,namespace);
+        if (response == null) {
+            return null;
+        }        
         return new ObjectMapper()
                 .readerFor(ServiceInstanceList.class)
                 .readValue(response);
@@ -99,6 +117,9 @@ public class ModelServiceCatalogClient {
     public ServiceInstance getServiceInstance(String namespace, String serviceName) throws IOException {
     	assert authHeader != null;
         String response = ServiceCatalogClient.getServiceInstance(baseUrl, apiVersion, authHeader,namespace, serviceName);
+        if (response == null) {
+            return null;
+        }
         return new ObjectMapper()
                 .readerFor(ServiceInstance.class)
                 .readValue(response);
@@ -107,6 +128,9 @@ public class ModelServiceCatalogClient {
     public ServiceBindingList getServiceBindings(String namespace) throws IOException {
     	assert authHeader != null;
         String response = ServiceCatalogClient.getServiceBindings(baseUrl, apiVersion, authHeader,namespace);
+        if (response == null) {
+            return null;
+        }        
         return new ObjectMapper()
                 .readerFor(ServiceBindingList.class)
                 .readValue(response);
@@ -115,6 +139,9 @@ public class ModelServiceCatalogClient {
     public ServiceBinding getServiceBinding(String namespace, String bindingName) throws IOException {
     	assert authHeader != null;
         String response = ServiceCatalogClient.getServiceBinding(baseUrl, apiVersion, authHeader,namespace, bindingName);
+        if (response == null) {
+            return null;
+        }        
         return new ObjectMapper()
                 .readerFor(ServiceBinding.class)
                 .readValue(response);
@@ -123,6 +150,9 @@ public class ModelServiceCatalogClient {
     public Secret getSecret(String namespace, String secretName) throws IOException {
     	assert authHeader != null;
         String response = ServiceCatalogClient.getSecret(baseUrl, "v1", authHeader, namespace, secretName);
+        if (response == null) {
+            return null;
+        }        
         return new ObjectMapper()
                 .readerFor(Secret.class)
                 .readValue(response);    	
@@ -131,6 +161,9 @@ public class ModelServiceCatalogClient {
     public ServiceBinding createServiceBinding(ServiceInstance svcInstance) throws IOException {
 		String binding = ServiceCatalogClient.createBinding(baseUrl, apiVersion, authHeader,
 				svcInstance.getMetadata().getName(), svcInstance.getMetadata().getNamespace());
+        if (binding == null) {
+            return null;
+        }		
         return new ObjectMapper()
                 .readerFor(ServiceBinding.class)
                 .readValue(binding);        
